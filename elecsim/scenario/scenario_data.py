@@ -135,7 +135,7 @@ def concatenate_carbon_price():
                     'price': carbon_price_scenario}
       carbon_price_scenario_df = pd.DataFrame(carbon_data)
       historical_carbon_price = pd.read_csv(ROOT_DIR + '/data/processed/carbon_price/uk_carbon_tax_historical.csv')
-      carbon_cost = historical_carbon_price.append(carbon_price_scenario_df, sort=True)
+      carbon_cost = pd.concat([historical_carbon_price, carbon_price_scenario_df], ignore_index=True, sort=True)
       carbon_cost.year = pd.to_numeric(carbon_cost.year)
       return carbon_cost
 
